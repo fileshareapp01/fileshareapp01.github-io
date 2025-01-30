@@ -22,7 +22,7 @@ downloadButton.addEventListener('click', () => {
     if (enteredKey === securityKey) {
         if (fileName) {
             // Security key matches and file name is specified
-            const fileURL = `https://github.com/manohardorreti/manohardorreti.github-io/raw/main/${encodeURIComponent(fileName)}`;
+            const fileURL = `https://github.com/fileshareapp01/fileshareapp01.github-io/raw/main/${encodeURIComponent(fileName)}`;
 
             // Create a temporary anchor element for downloading the file
             const a = document.createElement('a');
