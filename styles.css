@@ -1,76 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #ffffff 100%);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    color: #333;
 }
 
 .box {
-    width: 300px;
-    height: auto;
-    margin: 10px;
-    padding: 20px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
 }
 
-.box1 {
-    background-color: #f0f8ff;
+.box:hover {
+    transform: translateY(-5px);
 }
 
-.box2 {
-    background-color: #fdf6e3;
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #bd0ea0;
     text-align: center;
 }
 
-#dropArea {
-    border: 2px dashed #3498db;
-    padding: 20px;
-    margin-bottom: 10px;
-    width: 85%;
-    text-align: center;
-    cursor: pointer;
+p {
+    margin-bottom: 15px;
+    color: #ffffff;
 }
 
-input {
-    margin-bottom: 10px;
-    padding: 8px;
-    width: 94%;
-    border: 1px solid #ddd;
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #2618c3;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
     border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f3f3f3;
+    font-size: 16px;
+}
+
+input[type="password"]::placeholder {
+    color: rgba(8, 0, 1, 0.301);
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #3498db;
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    font-size: 16px;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background: #45a049;
 }
 
-#uploadMessage {
-    margin-top: 10px;
-    color: rgb(0, 128, 0);
-    font-weight: bold;
+#downloadMessage {
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
 }
 
-#qrCodeContainer {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fff;
+@media (max-width: 480px) {
+    .box {
+        padding: 30px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    input[type="password"], button {
+        font-size: 14px;
+    }
 }
