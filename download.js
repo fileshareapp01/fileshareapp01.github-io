@@ -24,7 +24,7 @@ downloadButton.addEventListener('click', () => {
             // Security key matches and file name is specified
             const fileURL = `https://raw.githubusercontent.com/fileshareapp01/fileshareapp01.github-io/main/${encodeURIComponent(fileName)}`;
 
-            // Create a temporary anchor element for downloading the file
+            // Create download link with 'download' attribute
             const a = document.createElement('a');
             a.href = fileURL;
             a.download = fileName; // Suggests a filename for download
