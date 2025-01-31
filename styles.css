@@ -91,9 +91,11 @@ button:hover {
     .box {
         padding: 30px;
     }
+
     h3 {
         font-size: 20px;
     }
+
     input[type="password"], button {
         font-size: 14px;
     }
