@@ -3,26 +3,36 @@ const urlParams = new URLSearchParams(window.location.search);
 const fileName = urlParams.get('file');
 const securityKey = urlParams.get('key');
 
-// Display the file name
+// Display the file name (if the element exists)
 const fileNameElement = document.getElementById('fileName');
-if (fileName) {
-    fileNameElement.textContent = `File: ${fileName}`;
-} else {
-    fileNameElement.textContent = 'No file specified.';
+if (fileNameElement) {
+    fileNameElement.textContent = fileName ? `File: ${fileName}` : 'No file specified.';
 }
 
-// Elements for download and user feedback
+// Get elements for download and user feedback
 const downloadButton = document.getElementById('downloadButton');
 const downloadMessage = document.getElementById('downloadMessage');
+const securityKeyInput = document.getElementById('securityKeyInput');
 
-// Add click event listener to the download button
-downloadButton.addEventListener('click', () => {
-    const enteredKey = document.getElementById('securityKeyInput').value.trim(); // Trim input to avoid accidental spaces
+// Ensure elements exist before adding event listeners
+if (downloadButton && securityKeyInput && downloadMessage) {
+    downloadButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevents accidental page reload if inside a form
 
-    if (enteredKey === securityKey) {
-        if (fileName) {
-            // Security key matches and file name is specified
+        const enteredKey = securityKeyInput.value.trim(); // Trim input to avoid accidental spaces
+
+        if (!fileName) {
+            downloadMessage.textContent = 'Error: No file specified.';
+            downloadMessage.style.color = 'red';
+            return;
+        }
+
+        if (enteredKey === securityKey) {
             const fileURL = `https://raw.githubusercontent.com/fileshareapp01/fileshareapp01.github-io/main/${encodeURIComponent(fileName)}`;
+
+            // Provide user feedback before initiating download
+            downloadMessage.textContent = 'Downloading...';
+            downloadMessage.style.color = 'blue';
 
             // Create a temporary anchor element for downloading the file
             const a = document.createElement('a');
@@ -32,18 +42,15 @@ downloadButton.addEventListener('click', () => {
             a.click();
             document.body.removeChild(a);
 
-            // Provide user feedback
+            // Update success message
             downloadMessage.textContent = 'File download initiated!';
             downloadMessage.style.color = 'green';
         } else {
-            // File name is missing
-            downloadMessage.textContent = 'File name is missing!';
+            // Security key does not match
+            downloadMessage.textContent = 'Invalid security key!';
             downloadMessage.style.color = 'red';
         }
-    } else {
-        // Security key does not match
-        downloadMessage.textContent = 'Invalid security key!';
-        downloadMessage.style.color = 'red';
-    }
-});
-
+    });
+} else {
+    console.error('Error: Missing required elements in HTML.');
+}
